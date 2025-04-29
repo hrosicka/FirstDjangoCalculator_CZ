@@ -499,3 +499,97 @@ button.addEventListener('click', () => {
 
 ## 11. Přesun JavaSctipt do samostatného souboru
 Přesunutí JavaScriptu do samostatného souboru je často lepší praxe. Tímto způsobem oddělíš JavaScript od HTML, což je lepší pro organizaci kódu a údržbu.
+
+- Vytvoř soubor kalkulacka.js: Vytvoř nový soubor s názvem kalkulacka.js v adresáři static/kalkulacka/.
+- Přesuň JavaScript kód: Přesuň JavaScript kód z HTML souboru (kalkulacka.html) do souboru kalkulacka.js.
+- Odkazuj na JavaScript soubor: V HTML souboru (kalkulacka.html) přidej před uzavírací tag </body> tag <script> s atributem src, který odkazuje na tvůj soubor kalkulacka.js.
+
+kalkulacka.js:
+
+```js
+const themeSwitch = document.getElementById('theme-switch');
+const body = document.body;
+
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+    body.classList.add(savedTheme);
+    if (savedTheme === 'dark-mode') {
+        themeSwitch.checked = true;
+    }
+}
+
+themeSwitch.addEventListener('change', () => {
+    body.classList.toggle('dark-mode');
+    if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark-mode');
+    } else {
+        localStorage.setItem('theme', '');
+    }
+});
+
+// Zvuk při kliknutí na tlačítko
+const button = document.querySelector('button');
+const synth = new Tone.Synth().toDestination();
+
+button.addEventListener('click', () => {
+    synth.triggerAttackRelease("C4", "8n");
+});
+```
+
+kalkulacka.html:
+
+```html
+{% load static %}
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jednoduchá Kalkulačka</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'kalkulacka/kalkulacka.css' %}">
+    <script src="https://unpkg.com/tone"></script>
+</head>
+<body>
+    <div class="calculator-wrapper">
+        <div class="theme-switch-wrapper">
+            <label for="theme-switch" class="theme-switch-label">Téma:</label>
+            <label class="theme-switch">
+                <input type="checkbox" id="theme-switch">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <h1>Jednoduchá Kalkulačka</h1>
+
+        <form method="post" action="{% url 'vypocitej' %}">
+            {% csrf_token %}
+            <label for="cislo1">Číslo 1:</label>
+            <input type="number" name="cislo1" id="cislo1" value="{{ cislo1|default:'' }}" placeholder="Zadejte první číslo">
+
+            <label for="cislo2">Číslo 2:</label>
+            <input type="number" name="cislo2" id="cislo2" value="{{ cislo2|default:'' }}" placeholder="Zadejte druhé číslo">
+
+            <label for="operace">Operace:</label>
+            <select name="operace" id="operace">
+                <option value="secti" {% if operace == 'secti' %}selected{% endif %}>+</option>
+                <option value="odecti" {% if operace == 'odecti' %}selected{% endif %}>-</option>
+                <option value="vynasob" {% if operace == 'vynasob' %}selected{% endif %}>*</option>
+                <option value="vydel" {% if operace == 'vydel' %}selected{% endif %}>/</option>
+            </select>
+
+            <button type="submit">Vypočítat</button>
+        </form>
+
+        {% if vysledek is not None %}
+            <h2>Výsledek: {{ vysledek }}</h2>
+        {% endif %}
+
+        {% if chyba %}
+            <p class="error-message">{{ chyba }}</p>
+        {% endif %}
+    </div>
+    <script src="{% static 'kalkulacka/kalkulacka.js' %}"></script>
+</body>
+</html>
+```
+
