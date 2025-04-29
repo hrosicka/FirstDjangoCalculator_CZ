@@ -109,3 +109,81 @@ def vypocitej(request):
     else:
         return HttpResponseRedirect(reverse('kalkulacka'))
 ```
+
+Funkce **kalkulacka** jednoduše vykreslí HTML šablonu s formulářem. Funkce vypocitej se spustí po odeslání formuláře:
+
+- Zkontroluje, zda se jedná o metodu POST (data z formuláře).
+- Získá hodnoty z formuláře (cislo1, cislo2, operace).
+- Provádí zvolenou operaci.
+- Předá výsledek (nebo chybovou zprávu) zpět do šablony pro zobrazení.
+- Ošetřuje případné chyby při převodu vstupů na čísla (ValueError).
+- Pokud se nejedná o POST požadavek, přesměruje uživatele zpět na úvodní stránku kalkulačky.
+
+---
+
+## 3. Vytvoření HTML šablony
+
+Nyní musíme vytvořit HTML soubor, který bude obsahovat formulář pro zadání čísel a zobrazení výsledku. Vytvoř složku templates uvnitř složky kalkulacka a v ní soubor kalkulacka.html. Do tohoto souboru vlož následující kód:
+
+```code
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jednoduchá Kalkulačka</title>
+</head>
+<body>
+    <h1>Jednoduchá Kalkulačka</h1>
+
+    <form method="post" action="{% url 'vypocitej' %}">
+        {% csrf_token %}
+        <label for="cislo1">Číslo 1:</label>
+        <input type="number" name="cislo1" id="cislo1" value="{{ cislo1|default:'' }}"><br><br>
+
+        <label for="cislo2">Číslo 2:</label>
+        <input type="number" name="cislo2" id="cislo2" value="{{ cislo2|default:'' }}"><br><br>
+
+        <label for="operace">Operace:</label>
+        <select name="operace" id="operace">
+            <option value="secti" {% if operace == 'secti' %}selected{% endif %}>+</option>
+            <option value="odecti" {% if operace == 'odecti' %}selected{% endif %}>-</option>
+            <option value="vynasob" {% if operace == 'vynasob' %}selected{% endif %}>*</option>
+            <option value="vydel" {% if operace == 'vydel' %}selected{% endif %}>/</option>
+        </select><br><br>
+
+        <button type="submit">Vypočítat</button>
+    </form>
+
+    {% if vysledek is not None %}
+        <h2>Výsledek: {{ vysledek }}</h2>
+    {% endif %}
+
+    {% if chyba %}
+        <p style="color: red;">{{ chyba }}</p>
+    {% endif %}
+</body>
+</html>
+```
+
+Tento HTML kód vytvoří jednoduchý formulář s dvěma číselnými poli, rozbalovacím menu pro výběr operace a tlačítkem pro odeslání.
+
+- {% csrf_token %} je důležitý bezpečnostní prvek pro Django formuláře.
+- {% url 'vypocitej' %} dynamicky generuje URL adresu pro pohled vypocitej.
+- {{ cislo1|default:'' }} a podobně zobrazují předchozí zadané hodnoty, pokud existují.
+- {% if vysledek is not None %} a {% if chyba %} podmíněně zobrazují výsledek nebo chybovou zprávu.
+
+---
+
+## 5. Registrace aplikace
+
+Nesmíme zapomenout naši aplikaci zaregistrovat v souboru jednoducha_kalkulacka/settings.py. Najdi sekci INSTALLED_APPS a přidej do ní 'kalkulacka':
+```code
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'kalkulacka',  # Přidali jsme naši aplikaci
+]
+```
