@@ -36,23 +36,6 @@ urlpatterns = [
 
 Tento kód říká, že jakákoli URL adresa začínající /kalkulacka/ bude směřována do souboru urls.py uvnitř naší aplikace kalkulacka.
 
----
-
-## 2. Definování URL adresy pro kalkulačku
-Nyní musíme definovat, na jaké URL adrese bude naše kalkulačka dostupná. Otevři soubor jednoducha_kalkulacka/urls.py a uprav ho takto:
-
-```code
-from django.contrib import admin
-from django.urls import path, include
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('kalkulacka/', include('kalkulacka.urls')),
-]
-```
-
-Tento kód říká, že jakákoli URL adresa začínající /kalkulacka/ bude směřována do souboru urls.py uvnitř naší aplikace kalkulacka.
-
 Nyní vytvoř soubor urls.py uvnitř složky kalkulacka a přidej do něj následující kód:
 ```code
 from django.urls import path
