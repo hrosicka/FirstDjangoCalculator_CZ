@@ -106,7 +106,7 @@ Funkce **kalkulacka** jednoduše vykreslí HTML šablonu s formulářem. Funkce 
 
 ## 4. Vytvoření HTML šablony
 
-Nyní musíme vytvořit HTML soubor, který bude obsahovat formulář pro zadání čísel a zobrazení výsledku. Vytvoř složku templates uvnitř složky kalkulacka a v ní soubor kalkulacka.html. Do tohoto souboru vlož následující kód:
+Nyní musíme vytvořit HTML soubor, který bude obsahovat formulář pro zadání čísel a zobrazení výsledku. Vytvoř složku ```templates``` uvnitř složky ```kalkulacka``` a v ní složku ```kalkulacka``` a v ní soubor kalkulacka.html. Do tohoto souboru vlož následující kód:
 
 ```code
 <!DOCTYPE html>
@@ -170,3 +170,50 @@ INSTALLED_APPS = [
     'kalkulacka',  # Přidali jsme naši aplikaci
 ]
 ```
+
+---
+
+## 6. Spuštění vývojového serveru
+
+Nyní můžeš spustit vývojový server Django a podívat se na svou kalkulačku v akci. V terminálu se ujisti, že jsi ve složce nejvyšší úrovně svého projektu (jednoducha_kalkulacka), a spusť příkaz:
+
+```bash
+python manage.py runserver
+```
+Otevři svůj webový prohlížeč a zadej adresu ```http://127.0.0.1:8000/kalkulacka/```. Měla by se ti zobrazit tvoje jednoduchá kalkulačka!
+
+---
+
+## 7. Jak udělat aplikaci hezkou?
+
+### CSS soubor
+- Vytvoř v adresáři aplikace ```kalkulacka``` (tam, kde máš ```views.py```, ```models.py``` atd.) nový adresář s názvem ```static```.
+- Vytvoř v adresáři static další adresář s názvem ```kalkulacka```.
+- Do adresáře ```static/kalkulacka``` ulož soubor s CSS styly. Můžeš ho pojmenovat například ```kalkulacka.css```.
+
+https://github.com/hrosicka/FirstDjangoCalculator_CZ/blob/master/kalkulacka/static/kalkulacka/kalkulacka.css
+
+### Vložení odkazu do HTML
+Nyní, když máš CSS soubor uložený na správném místě, musíš do svého HTML souboru (```kalkulacka.html```) vložit odkaz na něj. Odkaz se vkládá do hlavičky dokumentu, tedy mezi tagy ```<head>``` a ```</head>```.
+
+Ujisti se, že máš na začátku souboru ```{% load static %}``` a že odkaz na CSS vypadá takto
+ ```code
+{% load static %}
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    ...
+    <link rel="stylesheet" href="{% static 'kalkulacka/kalkulacka.css' %}">
+    ...
+</head>
+<body>
+    ...
+</body>
+</html>
+```
+
+---
+
+## 8. Oddělení logiky výpočtu
+
+
