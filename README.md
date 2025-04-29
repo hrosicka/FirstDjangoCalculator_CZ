@@ -121,7 +121,7 @@ Funkce **kalkulacka** jednoduše vykreslí HTML šablonu s formulářem. Funkce 
 
 ---
 
-## 3. Vytvoření HTML šablony
+## 4. Vytvoření HTML šablony
 
 Nyní musíme vytvořit HTML soubor, který bude obsahovat formulář pro zadání čísel a zobrazení výsledku. Vytvoř složku templates uvnitř složky kalkulacka a v ní soubor kalkulacka.html. Do tohoto souboru vlož následující kód:
 
