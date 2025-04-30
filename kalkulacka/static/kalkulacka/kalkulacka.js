@@ -17,11 +17,3 @@ themeSwitch.addEventListener('change', () => {
         localStorage.setItem('theme', '');
     }
 });
-
-// Zvuk při kliknutí na tlačítko
-const button = document.querySelector('button');
-const synth = new Tone.Synth().toDestination();
-
-button.addEventListener('click', () => {
-    synth.triggerAttackRelease("C4", "8n");
-});
