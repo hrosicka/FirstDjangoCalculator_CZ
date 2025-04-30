@@ -242,6 +242,8 @@ from django.urls import reverse
 from .kalkulacka_lib import Kalkulacka
 ```
 
+---
+
 
 ## 10. Světlý a tmavý režim aplikace
 
@@ -495,15 +497,10 @@ themeSwitch.addEventListener('change', () => {
     }
 });
 
-// Zvuk při kliknutí na tlačítko
-const button = document.querySelector('button');
-const synth = new Tone.Synth().toDestination();
-
-button.addEventListener('click', () => {
-    synth.triggerAttackRelease("C4", "8n");
-});
 </script>
 ```
+
+---
 
 ## 11. Přesun JavaSctipt do samostatného souboru
 Přesunutí JavaScriptu do samostatného souboru je často lepší praxe. Tímto způsobem oddělíš JavaScript od HTML, což je lepší pro organizaci kódu a údržbu.
@@ -535,13 +532,6 @@ themeSwitch.addEventListener('change', () => {
     }
 });
 
-// Zvuk při kliknutí na tlačítko
-const button = document.querySelector('button');
-const synth = new Tone.Synth().toDestination();
-
-button.addEventListener('click', () => {
-    synth.triggerAttackRelease("C4", "8n");
-});
 ```
 
 kalkulacka.html:
