@@ -15,16 +15,16 @@ python manage.py startapp kalkulacka
 
 Tyto příkazy udělají následující:
 
-- **django-admin startproject jednoducha_kalkulacka:** Vytvoří nový Django projekt s názvem jednoducha_kalkulacka.
+- **django-admin startproject jednoducha_kalkulacka:** Vytvoří nový Django projekt s názvem ```jednoducha_kalkulacka```.
 - **cd jednoducha_kalkulacka:** Přepne tě do nově vytvořené složky projektu.
-- **python manage.py startapp kalkulacka:** Vytvoří novou Django aplikaci s názvem kalkulacka uvnitř tvého projektu. Aplikace je modulární část tvého projektu, která se stará o specifickou funkcionalitu (v našem případě kalkulačku).
+- **python manage.py startapp kalkulacka:** Vytvoří novou Django aplikaci s názvem ```kalkulacka``` uvnitř tvého projektu. Aplikace je modulární část tvého projektu, která se stará o specifickou funkcionalitu (v našem případě kalkulačku).
 
 ---
 
 ## 2. Definování URL adresy pro kalkulačku
-Nyní musíme definovat, na jaké URL adrese bude naše kalkulačka dostupná. Otevři soubor jednoducha_kalkulacka/urls.py a uprav ho takto:
+Nyní musíme definovat, na jaké URL adrese bude naše kalkulačka dostupná. Otevři soubor ```jednoducha_kalkulacka/urls.py``` a uprav ho takto:
 
-```code
+```python
 from django.contrib import admin
 from django.urls import path, include
 
@@ -34,10 +34,10 @@ urlpatterns = [
 ]
 ```
 
-Tento kód říká, že jakákoli URL adresa začínající /kalkulacka/ bude směřována do souboru urls.py uvnitř naší aplikace kalkulacka.
+Tento kód říká, že jakákoli URL adresa začínající ```/kalkulacka/``` bude směřována do souboru ```urls.py``` uvnitř naší aplikace ```kalkulacka```.
 
-Nyní vytvoř soubor urls.py uvnitř složky kalkulacka a přidej do něj následující kód:
-```code
+Nyní vytvoř soubor ```urls.py``` uvnitř složky ```kalkulacka``` a přidej do něj následující kód:
+```python
 from django.urls import path
 from . import views
 
@@ -49,14 +49,14 @@ urlpatterns = [
 
 Zde definujeme dvě URL adresy pro naši aplikaci:
 
-- První **('')** odkazuje na úvodní stránku kalkulačky a je obsluhována funkcí kalkulacka v souboru views.py.
-- Druhá **('vypocitej/')** bude zpracovávat odeslaný formulář s čísly a operací a je obsluhována funkcí vypocitej v views.py.
+- První **('')** odkazuje na úvodní stránku kalkulačky a je obsluhována funkcí ```kalkulacka``` v souboru ```views.py```.
+- Druhá **('vypocitej/')** bude zpracovávat odeslaný formulář s čísly a operací a je obsluhována funkcí ```vypocitej``` v ```views.py```.
 
 ---
 
 ## 3. Vytvoření pohledů (Views)
 
-Nyní se podíváme na soubor kalkulacka/views.py a definujeme funkce, které budou obsluhovat naše URL adresy:
+Nyní se podíváme na soubor ```kalkulacka/views.py``` a definujeme funkce, které budou obsluhovat naše URL adresy:
 
 ```python
 from django.shortcuts import render
@@ -93,7 +93,7 @@ def vypocitej(request):
         return HttpResponseRedirect(reverse('kalkulacka'))
 ```
 
-Funkce **kalkulacka** jednoduše vykreslí HTML šablonu s formulářem. Funkce vypocitej se spustí po odeslání formuláře:
+Funkce **kalkulacka** jednoduše vykreslí HTML šablonu s formulářem. Funkce ```vypocitej``` se spustí po odeslání formuláře:
 
 - Zkontroluje, zda se jedná o metodu POST (data z formuláře).
 - Získá hodnoty z formuláře (cislo1, cislo2, operace).
@@ -106,7 +106,7 @@ Funkce **kalkulacka** jednoduše vykreslí HTML šablonu s formulářem. Funkce 
 
 ## 4. Vytvoření HTML šablony
 
-Nyní musíme vytvořit HTML soubor, který bude obsahovat formulář pro zadání čísel a zobrazení výsledku. Vytvoř složku ```templates``` uvnitř složky ```kalkulacka``` a v ní složku ```kalkulacka``` a v ní soubor kalkulacka.html. Do tohoto souboru vlož následující kód:
+Nyní musíme vytvořit HTML soubor, který bude obsahovat formulář pro zadání čísel a zobrazení výsledku. Vytvoř složku ```templates``` uvnitř složky ```kalkulacka``` a v ní složku ```kalkulacka``` a v ní soubor ```kalkulacka.html```. Do tohoto souboru vlož následující kód:
 
 ```html
 <!DOCTYPE html>
@@ -149,16 +149,17 @@ Nyní musíme vytvořit HTML soubor, který bude obsahovat formulář pro zadán
 
 Tento HTML kód vytvoří jednoduchý formulář s dvěma číselnými poli, rozbalovacím menu pro výběr operace a tlačítkem pro odeslání.
 
-- {% csrf_token %} je důležitý bezpečnostní prvek pro Django formuláře.
-- {% url 'vypocitej' %} dynamicky generuje URL adresu pro pohled vypocitej.
-- {{ cislo1|default:'' }} a podobně zobrazují předchozí zadané hodnoty, pokud existují.
-- {% if vysledek is not None %} a {% if chyba %} podmíněně zobrazují výsledek nebo chybovou zprávu.
+- **{% csrf_token %}** je důležitý bezpečnostní prvek pro Django formuláře.
+- **{% url 'vypocitej' %}** dynamicky generuje URL adresu pro pohled vypocitej.
+- **{{ cislo1|default:'' }}** a podobně zobrazují předchozí zadané hodnoty, pokud existují.
+- **{% if vysledek is not None %} a {% if chyba %}** podmíněně zobrazují výsledek nebo chybovou zprávu.
 
 ---
 
 ## 5. Registrace aplikace
 
-Nesmíme zapomenout naši aplikaci zaregistrovat v souboru jednoducha_kalkulacka/settings.py. Najdi sekci INSTALLED_APPS a přidej do ní 'kalkulacka':
+Nesmíme zapomenout naši aplikaci zaregistrovat v souboru ```jednoducha_kalkulacka/settings.py```. Najdi sekci ```INSTALLED_APP```S a přidej do ní ```'kalkulacka'```:
+
 ```python
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -218,10 +219,10 @@ Ujisti se, že máš na začátku souboru ```{% load static %}``` a že odkaz na
 
 Oddělení logiky výpočtu do samostatné třídy je skvělý způsob, jak zlepšit organizaci a čitelnost kódu. Uděláme to takto:
 
-- Vytvoříme třídu Kalkulacka, která obsahuje metody pro jednotlivé aritmetické operace (secti, odecti, vynasob, vydel).
-- Funkce vypocitej nyní vytvoří instanci této třídy a volá příslušnou metodu pro provedení výpočtu.
+- Vytvoříme třídu ```Kalkulacka```, která obsahuje metody pro jednotlivé aritmetické operace (secti, odecti, vynasob, vydel).
+- Funkce ```vypocitej``` nyní vytvoří instanci této třídy a volá příslušnou metodu pro provedení výpočtu.
 - Základní logika výpočtu je přesunuta do třídy, což zlepšuje strukturu kódu a usnadňuje jeho údržbu a testování.
-- Přejmdnujdmd funkci kalkulacka na kalkulacka_view, aby bylo jasnější, že se jedná o pohled (view) v Django.
+- Přejmenuj funkci kalkulacka na kalkulacka_view, aby bylo jasnější, že se jedná o pohled (view) v Django.
 
 ---
 
@@ -230,9 +231,16 @@ Oddělení logiky výpočtu do samostatné třídy je skvělý způsob, jak zlep
 To je standardní postup pro udržení čisté struktury projektu. Třídu ```Kalkulacka``` přesuneme do samostatného souboru a ukážeme si, jak ji pak importovat do ```views.py```.
 Tímto způsobem oddělíš logiku výpočtů od logiky zpracování požadavků a zlepšíš organizaci svého kódu.
 
-- **Vytvoř soubor kalkulacka_lib.py:** Vytvoř nový soubor s názvem kalkulacka_lib.py v adresáři aplikace kalkulacka (tam, kde máš views.py).
-- **Přesuň třídu Kalkulacka:** Přesuň kód třídy Kalkulacka z views.py do kalkulacka_lib.py.
-- **Importuj třídu v views.py:** V souboru views.py přidej řádek from .kalkulacka_lib import Kalkulacka, který importuje třídu z nového souboru.
+- **Vytvoř soubor kalkulacka_lib.py:** Vytvoř nový soubor s názvem ```kalkulacka_lib.py``` v adresáři aplikace kalkulacka (tam, kde máš ```views.py```).
+- **Přesuň třídu Kalkulacka:** Přesuň kód třídy Kalkulacka z ```views.py``` do ```kalkulacka_lib.py```.
+- **Importuj třídu v ```views.py:```** V souboru ```views.py``` přidej řádek from ```.kalkulacka_lib import Kalkulacka```, který importuje třídu z nového souboru.
+
+```python
+from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from .kalkulacka_lib import Kalkulacka
+```
 
 
 ## 10. Světlý a tmavý režim aplikace
@@ -241,7 +249,7 @@ Přidáme přepínač motivu (světlý/tmavý) a uložíme preferované nastaven
 
 ### Soubor ```kalkulacka.css```
 
-- Otevři soubor kalkulacka.css.
+- Otevři soubor ```kalkulacka.css```.
 - Uprav ho nádledujícím způsobem
   
 ```css
@@ -500,9 +508,9 @@ button.addEventListener('click', () => {
 ## 11. Přesun JavaSctipt do samostatného souboru
 Přesunutí JavaScriptu do samostatného souboru je často lepší praxe. Tímto způsobem oddělíš JavaScript od HTML, což je lepší pro organizaci kódu a údržbu.
 
-- Vytvoř soubor kalkulacka.js: Vytvoř nový soubor s názvem kalkulacka.js v adresáři static/kalkulacka/.
-- Přesuň JavaScript kód: Přesuň JavaScript kód z HTML souboru (kalkulacka.html) do souboru kalkulacka.js.
-- Odkazuj na JavaScript soubor: V HTML souboru (kalkulacka.html) přidej před uzavírací tag </body> tag <script> s atributem src, který odkazuje na tvůj soubor kalkulacka.js.
+- **Vytvoř soubor ```kalkulacka.js```:** Vytvoř nový soubor s názvem ```kalkulacka.js``` v adresáři static/kalkulacka/.
+- **Přesuň JavaScript kód:** Přesuň JavaScript kód z HTML souboru (```kalkulacka.html```) do souboru ```kalkulacka.js```.
+- **Odkazuj na JavaScript soubor:** V HTML souboru (```kalkulacka.html```) přidej před uzavírací tag ```</body> tag <script>``` s atributem ```src```, který odkazuje na tvůj soubor ```kalkulacka.js```.
 
 kalkulacka.js:
 
