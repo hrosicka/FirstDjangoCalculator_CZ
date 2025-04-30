@@ -465,7 +465,7 @@ input:checked + .slider:before {
 
 ```html
 <div class="theme-switch-wrapper">
-    <label for="theme-switch" class="theme-switch-label">Téma:</label>
+    <label for="theme-switch" class="theme-switch-label">Světlý/tmavý režim:</label>
     <label class="theme-switch">
         <input type="checkbox" id="theme-switch">
         <span class="slider round"></span>
@@ -551,7 +551,7 @@ kalkulacka.html:
 <body>
     <div class="calculator-wrapper">
         <div class="theme-switch-wrapper">
-            <label for="theme-switch" class="theme-switch-label">Téma:</label>
+            <label for="theme-switch" class="theme-switch-label">Světlý/tmavý režim:</label>
             <label class="theme-switch">
                 <input type="checkbox" id="theme-switch">
                 <span class="slider round"></span>
