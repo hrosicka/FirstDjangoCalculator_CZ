@@ -2,6 +2,8 @@
 
 Skvělý způsob, jak si procvičit základy toho frameworku krok za krokem.
 
+![](https://github.com/hrosicka/FirstDjangoCalculator_CZ/blob/master/doc/svetly_rezim.PNG))
+
 ---
 
 ## 1. Vytvoření Django projektu a aplikace
@@ -248,6 +250,9 @@ from .kalkulacka_lib import Kalkulacka
 ## 10. Světlý a tmavý režim aplikace
 
 Přidáme přepínač motivu (světlý/tmavý) a uložíme preferované nastavení do localStorage, takže se motiv zachová i po obnovení stránky.
+
+![](https://github.com/hrosicka/FirstDjangoCalculator_CZ/blob/master/doc/tmavy_rezim.PNG))
+
 
 ### Soubor ```kalkulacka.css```
 
