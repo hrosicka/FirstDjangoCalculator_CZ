@@ -7,7 +7,6 @@
 ![Last Commit](https://img.shields.io/github/last-commit/hrosicka/FirstDjangoCalculator_CZ)
 ![Issues](https://img.shields.io/github/issues/hrosicka/FirstDjangoCalculator_CZ)
 ![Stars](https://img.shields.io/github/stars/hrosicka/FirstDjangoCalculator_CZ)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/hrosicka/FirstDjangoCalculator_CZ/python-app.yml)
 
 Skvělý způsob, jak si procvičit základy toho frameworku krok za krokem.
 
