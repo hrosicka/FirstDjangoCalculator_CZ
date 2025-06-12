@@ -1,5 +1,14 @@
 # JEDNODUCHÁ KALKULAČKA - DJANGO TUTORIAL V ČEŠTINĚ
 
+![Python](https://img.shields.io/badge/python-3.10-blue)
+![Django](https://img.shields.io/badge/django-4.1-green)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Repo Size](https://img.shields.io/github/repo-size/hrosicka/FirstDjangoCalculator_CZ)
+![Last Commit](https://img.shields.io/github/last-commit/hrosicka/FirstDjangoCalculator_CZ)
+![Issues](https://img.shields.io/github/issues/hrosicka/FirstDjangoCalculator_CZ)
+![Stars](https://img.shields.io/github/stars/hrosicka/FirstDjangoCalculator_CZ)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/hrosicka/FirstDjangoCalculator_CZ/python-app.yml)
+
 Skvělý způsob, jak si procvičit základy toho frameworku krok za krokem.
 
 ![](https://github.com/hrosicka/FirstDjangoCalculator_CZ/blob/master/doc/svetly_rezim.PNG))
