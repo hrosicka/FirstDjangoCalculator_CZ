@@ -604,3 +604,8 @@ kalkulacka.html:
 </html>
 ```
 
+## Autor
+S láskou vytvořila [Hanka Robovská](https://github.com/hrosicka) 👩‍🔬
+
+## Licence
+MIT – Volné použití, úpravy a distribuce dle potřeby.
